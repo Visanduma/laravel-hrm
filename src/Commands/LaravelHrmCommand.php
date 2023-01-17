@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Visanduma\LaravelHrm\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelHrmCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-hrm';
 
     public $description = 'My command';
 
