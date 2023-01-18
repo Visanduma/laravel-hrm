@@ -18,8 +18,8 @@ class LaravelHrmServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-hrm')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-hrm_table')
-            ->hasCommand(LaravelHrmCommand::class);
+            //->hasViews()
+            ->hasMigration('create_laravel_hrm_tables');
+            //->hasCommand(LaravelHrmCommand::class);
     }
 }
