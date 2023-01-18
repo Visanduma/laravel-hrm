@@ -193,7 +193,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('emp_id')->constrained('hrm_employees')->cascadeOnUpdate()->restrictOnDelete();
             $table->date('attend_date');
-            $table->foreignId('shift_id')->nullable()->constrained('hrm_shift_assigns')->cascadeOnUpdate()->restrictOnDelete();
             $table->enum('status', ['Present', 'Absent', 'On Leave']);
             $table->timestamps();
         });
