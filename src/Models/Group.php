@@ -9,5 +9,4 @@ class Group extends Model
     protected $table = 'hrm_employee_groups';
 
     protected $guarded = [];
-
 }

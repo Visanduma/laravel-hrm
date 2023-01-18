@@ -9,5 +9,4 @@ class HealthProvider extends Model
     protected $table = 'hrm_health_insurance_providers';
 
     protected $guarded = [];
-
 }

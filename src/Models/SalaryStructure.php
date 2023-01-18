@@ -9,5 +9,4 @@ class SalaryStructure extends Model
     protected $table = 'hrm_salary_structures';
 
     protected $guarded = [];
-
 }

@@ -9,5 +9,4 @@ class LeaveHoliday extends Model
     protected $table = 'hrm_holidays';
 
     protected $guarded = [];
-
 }

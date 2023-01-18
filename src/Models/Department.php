@@ -9,5 +9,4 @@ class Department extends Model
     protected $table = 'hrm_departments';
 
     protected $guarded = [];
-
 }

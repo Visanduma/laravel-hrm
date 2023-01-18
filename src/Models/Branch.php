@@ -19,5 +19,4 @@ class Branch extends Model
     {
         return $this->hasMany(PayrollEntry::class, 'branch_id', 'id');
     }
-
 }

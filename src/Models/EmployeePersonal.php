@@ -9,5 +9,4 @@ class EmployeePersonal extends Model
     protected $table = 'hrm_employee_personal';
 
     protected $guarded = [];
-
 }

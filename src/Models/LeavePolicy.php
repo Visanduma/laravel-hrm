@@ -9,5 +9,4 @@ class LeavePolicy extends Model
     protected $table = 'hrm_leave_policies';
 
     protected $guarded = [];
-
 }

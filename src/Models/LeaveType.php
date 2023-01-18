@@ -9,5 +9,4 @@ class LeaveType extends Model
     protected $table = 'hrm_leave_types';
 
     protected $guarded = [];
-
 }

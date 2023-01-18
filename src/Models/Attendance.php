@@ -9,5 +9,4 @@ class Attendance extends Model
     protected $table = 'hrm_employee_attendances';
 
     protected $guarded = [];
-
 }

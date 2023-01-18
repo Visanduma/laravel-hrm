@@ -9,5 +9,4 @@ class EmployeeLeave extends Model
     protected $table = 'hrm_employee_leaves';
 
     protected $guarded = [];
-
 }

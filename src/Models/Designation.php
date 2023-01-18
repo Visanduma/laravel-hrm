@@ -9,5 +9,4 @@ class Designation extends Model
     protected $table = 'hrm_employee_designations';
 
     protected $guarded = [];
-
 }

@@ -9,5 +9,4 @@ class EmployementType extends Model
     protected $table = 'hrm_employment_types';
 
     protected $guarded = [];
-
 }
