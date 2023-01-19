@@ -10,6 +10,10 @@ class Branch extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'location' => 'array',
+    ];
+
     public function employees()
     {
         return $this->hasMany(Employee::class, 'emp_branch_id', 'id');
