@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('hrm_departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('parent_id')->constrained('hrm_departments')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('parent_id')->nullable()->constrained('hrm_departments')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
 
