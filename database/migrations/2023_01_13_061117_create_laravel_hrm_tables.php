@@ -196,25 +196,10 @@ return new class extends Migration
             $table->enum('status', ['Present', 'Absent', 'On Leave']);
             $table->timestamps();
         });
-
-        Schema::create('hrm_skills', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
-        });
-
-        Schema::create('hrm_designation_skills', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('desig_id')->constrained('hrm_employee_designations')->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreignId('skill_id')->constrained('hrm_skills')->cascadeOnUpdate()->restrictOnDelete();
-            $table->timestamps();
-        });
     }
 
     public function down()
     {
-        Schema::dropIfExists('hrm_designation_skills');
-        Schema::dropIfExists('hrm_skills');
         Schema::dropIfExists('hrm_employee_attendances');
         Schema::dropIfExists('hrm_payroll_employees');
         Schema::dropIfExists('hrm_payroll_entries');
