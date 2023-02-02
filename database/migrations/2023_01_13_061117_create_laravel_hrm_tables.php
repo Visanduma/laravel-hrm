@@ -180,11 +180,37 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('hrm_salary_slips', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('emp_id')->constrained('hrm_employees')->cascadeOnUpdate()->restrictOnDelete();
+        });
+
+        Schema::create('hrm_salary_slip_items', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('sal_slip_id')->constrained('hrm_salary_slips')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('sal_comp_id')->constrained('hrm_salary_components')->cascadeOnUpdate()->restrictOnDelete();
+            $table->double('amount', 8, 2);
+        });
+
+        Schema::create('hrm_payment_methods', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
+
+        Schema::create('hrm_payment_method_details', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('payment_method_id')->constrained('hrm_payment_methods')->cascadeOnDelete()->restrictOnDelete();
+            $table->string('account_name');
+            $table->string('account_number')->nullable();
+        });
+
         Schema::create('hrm_payroll_employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payroll_batch_id')->constrained('hrm_payroll_entries')->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId('payroll_entry_id')->constrained('hrm_payroll_entries')->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignId('emp_id')->constrained('hrm_employees')->cascadeOnUpdate()->restrictOnDelete();
-            $table->double('salary_amount', 8, 2);
+            $table->foreignId('sal_slip_id')->constrained('hrm_salary_slips')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->double('transfer_amount', 8, 2);
+            $table->foreignId('payment_method_id')->constrained('hrm_payment_methods')->cascadeOnUpdate()->restrictOnDelete();
             $table->string('payment_status', 12);
             $table->timestamps();
         });
@@ -194,6 +220,8 @@ return new class extends Migration
             $table->foreignId('emp_id')->constrained('hrm_employees')->cascadeOnUpdate()->restrictOnDelete();
             $table->date('attend_date');
             $table->enum('status', ['Present', 'Absent', 'On Leave']);
+            $table->dateTime('arrival_at');
+            $table->dateTime('leave_at');
             $table->timestamps();
         });
     }
