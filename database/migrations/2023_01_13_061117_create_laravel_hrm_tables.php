@@ -220,8 +220,8 @@ return new class extends Migration
             $table->foreignId('emp_id')->constrained('hrm_employees')->cascadeOnUpdate()->restrictOnDelete();
             $table->date('attend_date');
             $table->enum('status', ['Present', 'Absent', 'On Leave']);
-            $table->dateTime('arrival_at');
-            $table->dateTime('leave_at');
+            $table->dateTime('arrival_at')->nullable();
+            $table->dateTime('leave_at')->nullable();
             $table->timestamps();
         });
     }
