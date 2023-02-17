@@ -101,6 +101,7 @@ return new class extends Migration
         Schema::create('hrm_holidays', function (Blueprint $table) {
             $table->id();
             $table->date('holiday_date');
+            $table->string('reason');
             $table->timestamps();
         });
 
