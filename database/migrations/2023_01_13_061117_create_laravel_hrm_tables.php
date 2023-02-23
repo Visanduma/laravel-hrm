@@ -129,7 +129,7 @@ return new class extends Migration
             $table->foreignId('leave_type_id')->constrained('hrm_leave_types')->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('from_date');
             $table->date('to_date');
-            $table->float('no_of_days',3,1);
+            $table->float('no_of_days', 3, 1);
             $table->string('half_day', 10)->nullable();
             $table->tinyText('reason');
             $table->string('status', 12);

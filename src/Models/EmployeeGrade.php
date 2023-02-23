@@ -13,8 +13,8 @@ class EmployeeGrade extends Model
     public function policies()
     {
         return $this->morphToMany(LeavePolicy::class,
-         'allocatable',
-         'hrm_employee_leave_allocations'
+            'allocatable',
+            'hrm_employee_leave_allocations'
         );
     }
 

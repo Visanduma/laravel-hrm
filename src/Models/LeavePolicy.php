@@ -18,16 +18,16 @@ class LeavePolicy extends Model
     public function employees()
     {
         return $this->morphedByMany(Employee::class,
-         'allocatable',
-         'hrm_employee_leave_allocations'
+            'allocatable',
+            'hrm_employee_leave_allocations'
         );
     }
 
     public function grades()
     {
         return $this->morphedByMany(EmployeeGrade::class,
-         'allocatable',
-         'hrm_employee_leave_allocations'
+            'allocatable',
+            'hrm_employee_leave_allocations'
         );
     }
 }

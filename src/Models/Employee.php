@@ -47,8 +47,8 @@ class Employee extends Model
     public function policies()
     {
         return $this->morphToMany(LeavePolicy::class,
-         'allocatable',
-         'hrm_employee_leave_allocations',
+            'allocatable',
+            'hrm_employee_leave_allocations',
         );
     }
 
@@ -114,11 +114,9 @@ class Employee extends Model
 
     public function leaveTypes()
     {
-        if(!is_null($this->activePolicy()))
-        {
+        if (! is_null($this->activePolicy())) {
             $policyLeaves = $this->activePolicy()->policyLeaves()->get();
-        }
-        else {
+        } else {
             $policyLeaves = $this->grade->activePolicy()->policyLeaves()->get();
         }
 
@@ -138,10 +136,8 @@ class Employee extends Model
         return $this->leaveTypes()->where('leave_type_id', $leave_type_id)->first();
     }
 
-    public function remainingLeaves($leave_type_id) : int
+    public function remainingLeaves($leave_type_id): int
     {
         return $this->leaveType($leave_type_id)->annual_allocation - $this->yearLeaves()->sum('no_of_days');
     }
-
-
 }
