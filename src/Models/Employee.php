@@ -34,9 +34,27 @@ class Employee extends Model
         return $this->belongsTo(Designation::class, 'emp_desig_id');
     }
 
+    public function grade()
+    {
+        return $this->belongsTo(EmployeeGrade::class, 'emp_grade_id');
+    }
+
     public function personal()
     {
         return $this->hasMany(EmployeePersonal::class, 'emp_id', 'id');
+    }
+
+    public function policies()
+    {
+        return $this->morphToMany(LeavePolicy::class,
+         'allocatable',
+         'hrm_employee_leave_allocations',
+        );
+    }
+
+    public function leaves()
+    {
+        return $this->hasMany(EmployeeLeave::class, 'emp_id');
     }
 
     // Custom Attributes
@@ -85,4 +103,45 @@ class Employee extends Model
     {
         return $this->personal()->where('field', 'mobile')->first()->value ?? null;
     }
+
+    // methods
+
+    public function activePolicy()
+    {
+        return $this->policies()->whereDate('from_date', '<=', now()->format('Y-m-d'))
+        ->whereDate('to_date', '>=', now()->format('Y-m-d'))->first();
+    }
+
+    public function leaveTypes()
+    {
+        if(!is_null($this->activePolicy()))
+        {
+            $policyLeaves = $this->activePolicy()->policyLeaves()->get();
+        }
+        else {
+            $policyLeaves = $this->grade->activePolicy()->policyLeaves()->get();
+        }
+
+        return $policyLeaves;
+    }
+
+    public function yearLeaves()
+    {
+        return $this->leaves()
+            ->whereYear('from_date', '=', date('Y'))
+            ->where('status', 'Approved')
+            ->get();
+    }
+
+    public function leaveType($leave_type_id)
+    {
+        return $this->leaveTypes()->where('leave_type_id', $leave_type_id)->first();
+    }
+
+    public function remainingLeaves($leave_type_id) : int
+    {
+        return $this->leaveType($leave_type_id)->annual_allocation - $this->yearLeaves()->sum('no_of_days');
+    }
+
+
 }

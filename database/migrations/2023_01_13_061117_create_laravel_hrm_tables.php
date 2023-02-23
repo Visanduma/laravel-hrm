@@ -116,8 +116,8 @@ return new class extends Migration
         Schema::create('hrm_employee_leave_allocations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('leave_policy_id')->constrained('hrm_leave_policies')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->unsignedInteger('leave_policy_allocatable_id');
-            $table->string('leave_policy_allocatable_type');
+            $table->unsignedInteger('allocatable_id');
+            $table->string('allocatable_type');
             $table->date('from_date');
             $table->date('to_date');
             $table->timestamps();
@@ -129,8 +129,8 @@ return new class extends Migration
             $table->foreignId('leave_type_id')->constrained('hrm_leave_types')->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('from_date');
             $table->date('to_date');
-            $table->tinyInteger('no_of_days');
-            $table->string('half_day', 10);
+            $table->float('no_of_days',3,1);
+            $table->string('half_day', 10)->nullable();
             $table->tinyText('reason');
             $table->string('status', 12);
             $table->timestamps();
