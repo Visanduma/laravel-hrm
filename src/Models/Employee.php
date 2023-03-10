@@ -52,6 +52,16 @@ class Employee extends Model
         );
     }
 
+    public function salStructures()
+    {
+        return $this->morphToMany(SalaryStructure::class,
+             'assignable',
+            'hrm_salary_structure_assigns',
+            'assignable_id',
+            'sal_struct_id'
+        );
+    }
+
     public function leaves()
     {
         return $this->hasMany(EmployeeLeave::class, 'emp_id');
@@ -139,5 +149,11 @@ class Employee extends Model
     public function remainingLeaves($leave_type_id): int
     {
         return $this->leaveType($leave_type_id)->annual_allocation - $this->yearLeaves()->sum('no_of_days');
+    }
+
+    public function salStructureActive()
+    {
+        return $this->salStructures()->whereDate('from_date', '<=', now()->format('Y-m-d'))
+        ->whereDate('to_date', '>=', now()->format('Y-m-d'))->first();
     }
 }

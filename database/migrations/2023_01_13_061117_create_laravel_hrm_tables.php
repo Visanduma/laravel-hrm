@@ -165,8 +165,8 @@ return new class extends Migration
         Schema::create('hrm_salary_structure_assigns', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sal_struct_id')->constrained('hrm_salary_structures')->cascadeOnUpdate()->restrictOnDelete();
-            $table->unsignedInteger('sal_struct_assignable_id');
-            $table->string('sal_struct_assignable_type');
+            $table->unsignedInteger('assignable_id');
+            $table->string('assignable_type');
             $table->date('from_date');
             $table->date('to_date');
             $table->timestamps();
@@ -184,6 +184,7 @@ return new class extends Migration
         Schema::create('hrm_salary_slips', function (Blueprint $table) {
             $table->id();
             $table->foreignId('emp_id')->constrained('hrm_employees')->cascadeOnUpdate()->restrictOnDelete();
+            $table->timestamps();
         });
 
         Schema::create('hrm_salary_slip_items', function (Blueprint $table) {
@@ -191,11 +192,13 @@ return new class extends Migration
             $table->foreignId('sal_slip_id')->constrained('hrm_salary_slips')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('sal_comp_id')->constrained('hrm_salary_components')->cascadeOnUpdate()->restrictOnDelete();
             $table->double('amount', 8, 2);
+            $table->timestamps();
         });
 
         Schema::create('hrm_payment_methods', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->timestamps();
         });
 
         Schema::create('hrm_payment_method_details', function (Blueprint $table) {
@@ -203,6 +206,7 @@ return new class extends Migration
             $table->foreignId('payment_method_id')->constrained('hrm_payment_methods')->cascadeOnDelete()->restrictOnDelete();
             $table->string('account_name');
             $table->string('account_number')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('hrm_payroll_employees', function (Blueprint $table) {
@@ -212,6 +216,7 @@ return new class extends Migration
             $table->foreignId('sal_slip_id')->constrained('hrm_salary_slips')->cascadeOnUpdate()->cascadeOnDelete();
             $table->double('transfer_amount', 8, 2);
             $table->foreignId('payment_method_id')->constrained('hrm_payment_methods')->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId('payment_account_id')->constrained('hrm_payment_method_details')->cascadeOnUpdate()->restrictOnDelete();
             $table->string('payment_status', 12);
             $table->timestamps();
         });
@@ -231,6 +236,10 @@ return new class extends Migration
     {
         Schema::dropIfExists('hrm_employee_attendances');
         Schema::dropIfExists('hrm_payroll_employees');
+        Schema::dropIfExists('hrm_payment_method_details');
+        Schema::dropIfExists('hrm_payment_methods');
+        Schema::dropIfExists('hrm_salary_slip_items');
+        Schema::dropIfExists('hrm_salary_slips');
         Schema::dropIfExists('hrm_payroll_entries');
         Schema::dropIfExists('hrm_salary_structure_assigns');
         Schema::dropIfExists('hrm_salary_structure_components');

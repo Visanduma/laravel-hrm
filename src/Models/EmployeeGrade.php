@@ -18,11 +18,27 @@ class EmployeeGrade extends Model
         );
     }
 
+    public function salStructures()
+    {
+        return $this->morphToMany(SalaryStructure::class,
+            'assignable',
+            'hrm_salary_structure_assigns',
+            'assignable_id',
+            'sal_struct_id'
+        );
+    }
+
     // methods
 
     public function activePolicy()
     {
         return $this->policies()->whereDate('from_date', '<=', now()->format('Y-m-d'))
+        ->whereDate('to_date', '>=', now()->format('Y-m-d'))->first();
+    }
+
+    public function salStructureActive()
+    {
+        return $this->salStructures()->whereDate('from_date', '<=', now()->format('Y-m-d'))
         ->whereDate('to_date', '>=', now()->format('Y-m-d'))->first();
     }
 }
