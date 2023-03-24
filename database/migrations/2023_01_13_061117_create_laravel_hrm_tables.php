@@ -230,10 +230,30 @@ return new class extends Migration
             $table->dateTime('leave_at')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('hrm_claim_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('hrm_expense_claims', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('emp_id')->constrained('hrm_employees')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('payroll_period_id')->constrained('hrm_payroll_periods')->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId('claim_type_id')->constrained('hrm_claim_types')->cascadeOnUpdate()->restrictOnDelete();
+            $table->date('claimed_at');
+            $table->double('claimed_amount', 8, 2);
+            $table->string('reason');
+            $table->enum('status',  ['Approved', 'Rejected', 'Pending']);
+            $table->timestamps();
+        });
     }
 
     public function down()
     {
+        Schema::dropIfExists('hrm_expense_claims');
+        Schema::dropIfExists('hrm_claim_types');
         Schema::dropIfExists('hrm_employee_attendances');
         Schema::dropIfExists('hrm_payroll_employees');
         Schema::dropIfExists('hrm_payment_method_details');

@@ -12,6 +12,6 @@ class Designation extends Model
 
     public function skills()
     {
-        return $this->belongsToMany(Skill::class, 'hrm_designation_skills');
+        return $this->belongsToMany(Skill::class, 'hrm_designation_skills', 'desig_id', 'skill_id');
     }
 }
