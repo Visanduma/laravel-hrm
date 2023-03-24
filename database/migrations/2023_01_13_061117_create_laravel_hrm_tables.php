@@ -245,7 +245,7 @@ return new class extends Migration
             $table->date('claimed_at');
             $table->double('claimed_amount', 8, 2);
             $table->string('reason');
-            $table->enum('status',  ['Approved', 'Rejected', 'Pending']);
+            $table->enum('status', ['Approved', 'Rejected', 'Pending']);
             $table->timestamps();
         });
     }
