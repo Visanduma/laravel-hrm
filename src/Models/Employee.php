@@ -67,6 +67,16 @@ class Employee extends Model
         return $this->hasMany(EmployeeLeave::class, 'emp_id');
     }
 
+    public function claims()
+    {
+        return $this->hasMany(Claim::class, 'emp_id');
+    }
+
+    public function slips()
+    {
+        return $this->hasMany(SalarySlip::class, 'emp_id');
+    }
+
     // Custom Attributes
 
     public function getFirstNameAttribute()
@@ -155,5 +165,15 @@ class Employee extends Model
     {
         return $this->salStructures()->whereDate('from_date', '<=', now()->format('Y-m-d'))
         ->whereDate('to_date', '>=', now()->format('Y-m-d'))->first();
+    }
+
+    public function approvedClaims($payroll_period_id)
+    {
+        return $this->claims()->where([['status', '=' ,'Approved'],['payroll_period_id', '=', $payroll_period_id]])->get();
+    }
+
+    public function hasSlip($payroll_entry_id) : bool
+    {
+        return $this->slips()->where('payroll_entry_id', '=', $payroll_entry_id)->exists();
     }
 }

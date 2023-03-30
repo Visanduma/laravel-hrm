@@ -3,6 +3,7 @@
 namespace Visanduma\LaravelHrm\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class SalaryStructure extends Model
 {
@@ -41,5 +42,15 @@ class SalaryStructure extends Model
     public function assignors()
     {
         return $this->hasMany(SalaryStructurable::class, 'sal_struct_id', 'id');
+    }
+
+    public function slips(): MorphToMany
+    {
+        return $this->morphToMany(SalarySlip::class,
+            'itemable',
+            'hrm_salary_slip_items',
+            'itemable_id',
+            'sal_slip_id'
+        );
     }
 }
