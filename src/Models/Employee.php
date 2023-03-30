@@ -169,10 +169,10 @@ class Employee extends Model
 
     public function approvedClaims($payroll_period_id)
     {
-        return $this->claims()->where([['status', '=' ,'Approved'],['payroll_period_id', '=', $payroll_period_id]])->get();
+        return $this->claims()->where([['status', '=', 'Approved'], ['payroll_period_id', '=', $payroll_period_id]])->get();
     }
 
-    public function hasSlip($payroll_entry_id) : bool
+    public function hasSlip($payroll_entry_id): bool
     {
         return $this->slips()->where('payroll_entry_id', '=', $payroll_entry_id)->exists();
     }

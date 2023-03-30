@@ -16,7 +16,6 @@ class SalarySlip extends Model
         return $this->hasMany(SalarySlipItem::class, 'sal_slip_id');
     }
 
-
     public function claims(): MorphToMany
     {
         return $this->morphedByMany(Claim::class,
@@ -25,7 +24,6 @@ class SalarySlip extends Model
             'sal_slip_id'
         );
     }
-
 
     public function structures(): MorphToMany
     {
@@ -43,8 +41,8 @@ class SalarySlip extends Model
 
     // methods
 
-    public function totalSalary(SalaryStructure $obj) : float
+    public function totalSalary(SalaryStructure $obj): float
     {
-        return ($this->claims->sum('claimed_amount') + $obj->salComponents->sum('pivot.amount'));
+        return $this->claims->sum('claimed_amount') + $obj->salComponents->sum('pivot.amount');
     }
 }
