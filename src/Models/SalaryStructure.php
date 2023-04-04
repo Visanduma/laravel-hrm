@@ -3,7 +3,6 @@
 namespace Visanduma\LaravelHrm\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class SalaryStructure extends Model
 {
