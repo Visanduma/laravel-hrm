@@ -43,14 +43,4 @@ class SalaryStructure extends Model
     {
         return $this->hasMany(SalaryStructurable::class, 'sal_struct_id', 'id');
     }
-
-    public function slips(): MorphToMany
-    {
-        return $this->morphToMany(SalarySlip::class,
-            'itemable',
-            'hrm_salary_slip_items',
-            'itemable_id',
-            'sal_slip_id'
-        );
-    }
 }

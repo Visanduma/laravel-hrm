@@ -25,9 +25,9 @@ class SalarySlip extends Model
         );
     }
 
-    public function structures(): MorphToMany
+    public function components(): MorphToMany
     {
-        return $this->morphedByMany(SalaryStructure::class,
+        return $this->morphedByMany(SalaryComponent::class,
             'itemable',
             'hrm_salary_slip_items',
             'sal_slip_id'
@@ -37,12 +37,5 @@ class SalarySlip extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'emp_id');
-    }
-
-    // methods
-
-    public function totalSalary(SalaryStructure $obj): float
-    {
-        return $this->claims->sum('claimed_amount') + $obj->salComponents->sum('pivot.amount');
     }
 }
