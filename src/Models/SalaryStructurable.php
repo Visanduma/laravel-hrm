@@ -17,14 +17,11 @@ class SalaryStructurable extends Model
 
     // methods
 
-    public function assignor() : String
+    public function assignor(): string
     {
-        if($this->assignable_type == 'grade')
-        {
+        if ($this->assignable_type == 'grade') {
             return EmployeeGrade::findOrfail($this->assignable_id)->name;
-        }
-        else
-        {
+        } else {
             return Employee::findOrfail($this->assignable_id)->name;
         }
     }
