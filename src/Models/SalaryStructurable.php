@@ -14,4 +14,18 @@ class SalaryStructurable extends Model
     {
         return $this->morphTo();
     }
+
+    // methods
+
+    public function assignor() : String
+    {
+        if($this->assignable_type == 'grade')
+        {
+            return EmployeeGrade::findOrfail($this->assignable_id)->name;
+        }
+        else
+        {
+            return Employee::findOrfail($this->assignable_id)->name;
+        }
+    }
 }

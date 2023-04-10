@@ -163,8 +163,7 @@ class Employee extends Model
 
     public function salStructureActive()
     {
-        return $this->salStructures()->whereDate('from_date', '<=', now()->format('Y-m-d'))
-        ->whereDate('to_date', '>=', now()->format('Y-m-d'))->first();
+        return $this->salStructures()->where('active', true)->first();
     }
 
     public function approvedClaims($payroll_period_id)
