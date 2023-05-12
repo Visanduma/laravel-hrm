@@ -129,7 +129,7 @@ class Employee extends Model
     public function activePolicy()
     {
         return $this->policies()->whereDate('from_date', '<=', now()->format('Y-m-d'))
-        ->whereDate('to_date', '>=', now()->format('Y-m-d'))->first();
+            ->whereDate('to_date', '>=', now()->format('Y-m-d'))->first();
     }
 
     public function leaveTypes()
