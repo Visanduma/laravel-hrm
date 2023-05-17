@@ -19,7 +19,8 @@ class LeavePolicy extends Model
     {
         return $this->morphedByMany(Employee::class,
             'allocatable',
-            'hrm_employee_leave_allocations'
+            'hrm_employee_leave_allocations',
+            'leave_policy_id'
         );
     }
 
@@ -27,7 +28,13 @@ class LeavePolicy extends Model
     {
         return $this->morphedByMany(EmployeeGrade::class,
             'allocatable',
-            'hrm_employee_leave_allocations'
+            'hrm_employee_leave_allocations',
+            'leave_policy_id'
         );
+    }
+
+    public function allocators()
+    {
+        return $this->hasMany(LeavePolicyAllocatable::class, 'leave_policy_id', 'id');
     }
 }

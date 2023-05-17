@@ -17,7 +17,7 @@ class SalaryStructure extends Model
             'hrm_salary_structure_components',
             'sal_struct_id',
             'sal_comp_id')
-            ->withPivot('amount', 'formula');
+        ->withPivot('amount', 'formula');
     }
 
     public function employees()
