@@ -3,12 +3,17 @@
 namespace Visanduma\LaravelHrm\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Visanduma\LaravelHrm\Enums\LeaveStatusEnum;
 
 class EmployeeLeave extends Model
 {
     protected $table = 'hrm_employee_leaves';
 
     protected $guarded = [];
+
+    protected $casts = [
+        'status' => LeaveStatusEnum::class
+    ];
 
     public function employee()
     {
