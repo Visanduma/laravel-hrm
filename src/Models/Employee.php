@@ -3,6 +3,7 @@
 namespace Visanduma\LaravelHrm\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Visanduma\LaravelHrm\Enums\LeaveStatusEnum;
 
 class Employee extends Model
 {
@@ -149,7 +150,7 @@ class Employee extends Model
     {
         return $this->leaves()
             ->whereYear('from_date', '=', date('Y'))
-            ->where('status', 'Approved')
+            ->where('status', LeaveStatusEnum::APPROVED)
             ->get();
     }
 

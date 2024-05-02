@@ -15,6 +15,10 @@ class EmployeeLeave extends Model
         'status' => LeaveStatusEnum::class
     ];
 
+    protected $attributes = [
+        'status' => LeaveStatusEnum::PENDING
+    ];
+
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'emp_id');
