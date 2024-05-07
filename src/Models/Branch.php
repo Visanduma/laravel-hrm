@@ -2,8 +2,8 @@
 
 namespace Visanduma\LaravelHrm\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Visanduma\LaravelHrm\Database\Factories\BranchFactory;
 
 class Branch extends Model

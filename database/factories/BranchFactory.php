@@ -26,4 +26,3 @@ class BranchFactory extends Factory
         ];
     }
 }
-

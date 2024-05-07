@@ -2,7 +2,7 @@
 
 namespace Visanduma\LaravelHrm\Enums;
 
-enum LeaveStatusEnum : string
+enum LeaveStatusEnum: string
 {
     case PENDING = 'Pending';
     case APPROVED = 'Approved';

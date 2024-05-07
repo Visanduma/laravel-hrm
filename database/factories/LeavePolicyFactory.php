@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Visanduma\LaravelHrm\Database\Factories;
 
@@ -23,7 +23,7 @@ class LeavePolicyFactory extends Factory
     {
         return [
             'name' => $this->faker->lexify('policy-????'),
-            'abbreviation' => $this->faker->regexify('[A-Z]{5}[0-4]{3}'), 
+            'abbreviation' => $this->faker->regexify('[A-Z]{5}[0-4]{3}'),
         ];
     }
 }

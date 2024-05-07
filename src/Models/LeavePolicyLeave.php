@@ -2,14 +2,14 @@
 
 namespace Visanduma\LaravelHrm\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Visanduma\LaravelHrm\Database\Factories\LeavePolicyLeaveFactory;
 
 class LeavePolicyLeave extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'hrm_leave_policy_leaves';
 
     protected $guarded = [];

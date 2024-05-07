@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Visanduma\LaravelHrm\Database\Factories;
 
@@ -23,8 +23,8 @@ class LeaveTypeFactory extends Factory
     {
         return [
             'name' => $this->faker->randomElement(['Duty', 'Casual', 'Sick']),
-            'max_allowed' => 15, 
-            'max_continuous_allowed' => 5
+            'max_allowed' => 15,
+            'max_continuous_allowed' => 5,
         ];
     }
 }

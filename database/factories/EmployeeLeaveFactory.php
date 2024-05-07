@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace Visanduma\LaravelHrm\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Visanduma\LaravelHrm\Enums\LeaveStatusEnum;
 use Visanduma\LaravelHrm\Models\EmployeeLeave;
 use Visanduma\LaravelHrm\Models\LeaveType;
-use Visanduma\LaravelHrm\Enums\LeaveStatusEnum;
 
 class EmployeeLeaveFactory extends Factory
 {
@@ -30,8 +30,8 @@ class EmployeeLeaveFactory extends Factory
             'to_date' => '2024-05-30',
             'no_of_days' => 4,
             'half_day' => null,
-            'reason' => "personal",
-            'status' => LeaveStatusEnum::APPROVED
+            'reason' => 'personal',
+            'status' => LeaveStatusEnum::APPROVED,
         ];
     }
 }

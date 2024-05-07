@@ -2,25 +2,25 @@
 
 namespace Visanduma\LaravelHrm\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Visanduma\LaravelHrm\Database\Factories\EmployeeLeaveFactory;
 use Visanduma\LaravelHrm\Enums\LeaveStatusEnum;
 
 class EmployeeLeave extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'hrm_employee_leaves';
 
     protected $guarded = [];
 
     protected $casts = [
-        'status' => LeaveStatusEnum::class
+        'status' => LeaveStatusEnum::class,
     ];
 
     protected $attributes = [
-        'status' => LeaveStatusEnum::PENDING
+        'status' => LeaveStatusEnum::PENDING,
     ];
 
     protected static function newFactory()
