@@ -3,12 +3,21 @@
 namespace Visanduma\LaravelHrm\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Visanduma\LaravelHrm\Database\Factories\LeavePolicyFactory;
 
 class LeavePolicy extends Model
 {
+    use HasFactory;
+    
     protected $table = 'hrm_leave_policies';
 
     protected $guarded = [];
+
+    protected static function newFactory()
+    {
+        return LeavePolicyFactory::new();
+    }
 
     public function policyLeaves()
     {
