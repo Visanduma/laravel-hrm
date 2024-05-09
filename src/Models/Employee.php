@@ -132,7 +132,7 @@ class Employee extends Model
     public function activePolicy()
     {
         return $this->policies()->whereDate('from_date', '<=', now()->format('Y-m-d'))
-            ->whereDate('to_date', '>=', now()->format('Y-m-d'))->first();
+            ->whereDate('to_date', '>=', now()->format('Y-m-d'))->latest()->first();
     }
 
     public function leaveTypes()
@@ -146,9 +146,12 @@ class Employee extends Model
         return $policyLeaves;
     }
 
-    public function yearLeaves()
+    public function yearLeaves($leave_type_id = null)
     {
         return $this->leaves()
+            ->when($leave_type_id, function ($query) use ($leave_type_id) {
+                return $query->where('leave_type_id', $leave_type_id);
+            })
             ->whereYear('from_date', '=', date('Y'))
             ->where('status', LeaveStatusEnum::APPROVED)
             ->get();
@@ -161,7 +164,7 @@ class Employee extends Model
 
     public function remainingLeaves($leave_type_id): int
     {
-        return $this->leaveType($leave_type_id)->annual_allocation - $this->yearLeaves()->sum('no_of_days');
+        return $this->leaveType($leave_type_id)->annual_allocation - $this->yearLeaves($leave_type_id)->sum('no_of_days');
     }
 
     public function salStructureActive()
