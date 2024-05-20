@@ -11,6 +11,10 @@ class Claim extends Model
 
     protected $guarded = [];
 
+    protected $attributes = [
+        'status' => 'Pending',
+    ];
+
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'emp_id');
