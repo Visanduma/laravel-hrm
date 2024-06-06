@@ -38,4 +38,9 @@ class SalarySlip extends Model
     {
         return $this->belongsTo(Employee::class, 'emp_id');
     }
+
+    public function payroll()
+    {
+        return $this->hasOne(PayrollEmployee::class, 'sal_slip_id');
+    }
 }
