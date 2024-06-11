@@ -31,7 +31,7 @@ class SalarySlip extends Model
             'itemable',
             'hrm_salary_slip_items',
             'sal_slip_id'
-        );
+        )->withPivot('amount');
     }
 
     public function employee()
