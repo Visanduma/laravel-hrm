@@ -12,6 +12,11 @@ class PayrollPeriod extends Model
 
     public function claims()
     {
-        return $this->hasMany(Claim::class, 'emp_id');
+        return $this->hasMany(Claim::class, 'payroll_period_id');
+    }
+
+    public function payrollEntries() 
+    {
+        return $this->hasMany(PayrollEntry::class, 'payroll_period_id');
     }
 }

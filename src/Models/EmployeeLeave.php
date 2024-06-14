@@ -37,4 +37,14 @@ class EmployeeLeave extends Model
     {
         return $this->belongsTo(LeaveType::class, 'leave_type_id');
     }
+
+    public function slips(): MorphToMany
+    {
+        return $this->morphToMany(SalarySlip::class,
+            'itemable',
+            'hrm_salary_slip_items',
+            'itemable_id',
+            'sal_slip_id'
+        );
+    }
 }
