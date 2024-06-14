@@ -34,7 +34,7 @@ class SalarySlip extends Model
         )->withPivot('amount');
     }
 
-    public function leaves(): MorphToMany 
+    public function leaves(): MorphToMany
     {
         return $this->morphedByMany(EmployeeLeave::class,
             'itemable',
@@ -53,7 +53,7 @@ class SalarySlip extends Model
         return $this->hasOne(PayrollEmployee::class, 'sal_slip_id');
     }
 
-    public function payrollEntry() 
+    public function payrollEntry()
     {
         return $this->belongsTo(PayrollEntry::class, 'payroll_entry_id');
     }
