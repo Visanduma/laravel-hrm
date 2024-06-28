@@ -164,7 +164,7 @@ class Employee extends Model
 
     public function remainingLeaves($leave_type_id): int
     {
-        return $this->leaveType($leave_type_id)->annual_allocation - $this->yearLeaves($leave_type_id)->sum('no_of_days');
+        return $this->leaveType($leave_type_id)->annual_allocation - $this->yearLeaves($leave_type_id)->count();
     }
 
     public function salStructureActive()
