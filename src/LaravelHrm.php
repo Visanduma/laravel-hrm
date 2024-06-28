@@ -2,6 +2,4 @@
 
 namespace Visanduma\LaravelHrm;
 
-class LaravelHrm
-{
-}
+class LaravelHrm {}
