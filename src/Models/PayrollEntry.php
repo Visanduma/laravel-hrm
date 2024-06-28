@@ -15,7 +15,7 @@ class PayrollEntry extends Model
         return $this->belongsTo(PayrollPeriod::class, 'payroll_period_id', 'id');
     }
 
-    public function salarySlips() 
+    public function salarySlips()
     {
         return $this->hasMany(SalarySlip::class, 'payroll_entry_id');
     }
