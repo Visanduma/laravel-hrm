@@ -34,7 +34,7 @@ class EmployeeLeave extends Model
     {
         return Attribute::make(
             get: fn (string $value) => Carbon::createFromFormat('Y-m-d', $value)->format('j/n/Y'),
-            set: fn (string $value) => Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d'),
+            set: fn (string $value) => Carbon::createFromFormat('j/n/Y', $value)->format('Y-m-d'),
         );
     }
 
