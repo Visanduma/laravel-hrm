@@ -2,6 +2,7 @@
 
 namespace Visanduma\LaravelHrm\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Visanduma\LaravelHrm\Enums\LeaveStatusEnum;
 
@@ -14,6 +15,11 @@ class Employee extends Model
     protected $appends = ['first_name', 'middle_name', 'last_name', 'addressLine1', 'addressLine2', 'addressLine3', 'dob', 'nic', 'mobile'];
 
     // Relationships
+
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function empType()
     {
